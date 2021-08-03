@@ -7,8 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:padding="8dp">
+        android:paddingRight="8dp">
 
     <ProgressBar
             android:id="@+id/pbTarget"
@@ -18,7 +17,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
-            android:max="100"/>
+            android:max="100"
+            android:paddingTop="8dp"
+            android:elevation="8dp"/>
     <TextView
             android:id="@+id/tvProgress"
             android:layout_width="wrap_content"
@@ -30,13 +31,29 @@
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvExpenses"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvProgress"
             app:layout_constraintBottom_toBottomOf="parent"
-    />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProgress"
+            app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/add"
+            android:elevation="8dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="normal"
+            android:src="@drawable/ic_action_add"
+            />
 </androidx.constraintlayout.widget.ConstraintLayout>

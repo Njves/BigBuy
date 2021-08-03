@@ -39,7 +39,14 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp"/>
 
-
+    <Button
+        android:id="@+id/btnRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Удалить"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

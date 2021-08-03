@@ -3,4 +3,6 @@
     <string name="title_home">Цель</string>
     <string name="title_graph">График</string>
     <string name="title_analysis">Анализ</string>
+    <string name="add">Добавить</string>
+    <string name="progress">%1$s / %2$s</string>
 </resources>
