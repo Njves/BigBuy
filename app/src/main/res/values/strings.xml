@@ -5,4 +5,7 @@
     <string name="title_analysis">Анализ</string>
     <string name="add">Добавить</string>
     <string name="progress">%1$s / %2$s</string>
+    <string name="menu_add">Добавить</string>
+    <string name="hint_amount">Сумма</string>
+    <string name="hint_income">Источник</string>
 </resources>

@@ -7,15 +7,17 @@ import java.util.*
 
 class Expense(@ColumnInfo(name = "is_income") val isIncome: Boolean,
               @ColumnInfo(name = "source") val source: Source,
-              @ColumnInfo(name = "amount") val amount: Float,
-              @ColumnInfo(name = "is_negative") val isNegative: Boolean) {
+              @ColumnInfo(name = "amount") val amount: Float, ) {
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: String = UUID.randomUUID().toString()
 
+    @ColumnInfo(name = "date")
+    var date: Date = Date()
     @Ignore
-    constructor(id: String, isIncome: Boolean, source: Source, amount: Float, isNegative: Boolean) : this(isIncome, source, amount, isNegative) {
+    constructor(id: String, isIncome: Boolean, source: Source, amount: Float, date: Date) : this(isIncome, source, amount) {
         this.id = id
+        this.date = date
     }
 
     override fun equals(other: Any?): Boolean {
@@ -27,9 +29,8 @@ class Expense(@ColumnInfo(name = "is_income") val isIncome: Boolean,
         if (isIncome != other.isIncome) return false
         if (source != other.source) return false
         if (amount != other.amount) return false
-        if (isNegative != other.isNegative) return false
         if (id != other.id) return false
-
+        if (date.time != other.date.time) return false
         return true
     }
 
@@ -37,13 +38,13 @@ class Expense(@ColumnInfo(name = "is_income") val isIncome: Boolean,
         var result = isIncome.hashCode()
         result = 31 * result + source.hashCode()
         result = 31 * result + amount.hashCode()
-        result = 31 * result + isNegative.hashCode()
         result = 31 * result + id.hashCode()
+        result = 31 * result + date.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "Expense(isIncome=$isIncome, source=$source, amount=$amount, isNegative=$isNegative, id='$id')"
+        return "Expense(isIncome=$isIncome, source=$source, amount=$amount, id='$id', date=$date)"
     }
 
 

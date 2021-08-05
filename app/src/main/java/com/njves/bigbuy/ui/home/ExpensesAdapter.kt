@@ -41,7 +41,7 @@ class ExpensesAdapter(private val context: Context, private var expenses: Mutabl
         private val btnRemove = itemView.findViewById<Button>(R.id.btnRemove)
         // Берем данные из списка расходов и прикрепляем к вьюшкам списка
         fun bind(expense: Expense) {
-            ivIsIncome.setImageResource(getIncomeImage(expense.isNegative))
+            ivIsIncome.setImageResource(getIncomeImage(expense.isIncome))
             tvSource.text = expense.source.title
             tvAmount.text = expense.amount.toString()
             btnRemove.setOnClickListener {
@@ -53,8 +53,8 @@ class ExpensesAdapter(private val context: Context, private var expenses: Mutabl
 
         }
 
-        fun getIncomeImage(isNegative: Boolean): Int {
-            if(isNegative)
+        fun getIncomeImage(isIncome: Boolean): Int {
+            if(isIncome)
                 return R.drawable.ic_income_down
             return R.drawable.ic_income_up
         }

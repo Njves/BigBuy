@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,7 +38,10 @@ class HomeFragment : Fragment(), ExpensesAdapter.ExpenseAdapterEvent {
 
         fabAdd = root.findViewById(R.id.fabAdd)
         fabAdd.setOnClickListener {
-            homeViewModel.addExpense(Expense(true, Source("Магазин"), 2111f, true))
+
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_create, null, NavOptions.Builder()
+                .setEnterAnim(R.anim.nav_default_enter_anim)
+                .setExitAnim(R.anim.nav_default_exit_anim).build())
         }
 
         pbTarget = root.findViewById(R.id.pbTarget)
@@ -48,9 +53,14 @@ class HomeFragment : Fragment(), ExpensesAdapter.ExpenseAdapterEvent {
         homeViewModel.initTestExpense()
         // Инициализируем адаптер с пустым списком
         initAdapter(mutableListOf())
-        homeViewModel.expenses.observe( viewLifecycleOwner, Observer {
+        homeViewModel.expenses.observe( viewLifecycleOwner, Observer { it ->
+            Log.d("Expense", it.toString())
+            it.sortBy {
+                it.date.time
+            }
             // При обновление спискаоб обновляем адаптер
             updateAdapter(it)
+
             // Берем список считаем сумму расходов
             val sumExpense = sumExpense(it)
             // Записываем в прогресс бар

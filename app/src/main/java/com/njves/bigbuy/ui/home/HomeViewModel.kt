@@ -4,29 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.njves.bigbuy.model.Expense
+import com.njves.bigbuy.model.ExpenseStorage
 import com.njves.bigbuy.model.Source
+import com.njves.bigbuy.model.TempExpenseStorage
 import java.util.*
 
 class HomeViewModel : ViewModel() {
     var expenses: MutableLiveData<MutableList<Expense>> = MutableLiveData()
-
+    var expenseStorage: ExpenseStorage? = null
 
 
     fun initTestExpense() {
-        val random = Random()
-        val rndItemsCount = random.nextInt(30)
-
-        val listSource = mutableListOf("Магазин", "Банк", "Работа", "Автосервис")
-        val expensesList = mutableListOf<Expense>()
-        for(i in 0..rndItemsCount) {
-            var rndAmount = random.nextInt(10000)
-            val expense = Expense(
-                random.nextBoolean(), Source(
-                    listSource[random.nextInt(listSource.size)]), rndAmount.toFloat(),
-                random.nextBoolean())
-            expensesList.add(expense)
-        }
-        expenses.postValue(expensesList)
+        expenseStorage = TempExpenseStorage()
+        val list = expenseStorage?.getExpenseList()
+        expenses.postValue(list)
     }
 
 

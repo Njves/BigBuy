@@ -9,7 +9,9 @@
             android:id="@+id/navigation_home"
             android:name="com.njves.bigbuy.ui.home.HomeFragment"
             android:label="@string/title_home"
-            tools:layout="@layout/fragment_home"/>
+            tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_navigation_home_to_navigation_create" app:destination="@id/navigation_create"/>
+    </fragment>
 
     <fragment
             android:id="@+id/navigation_graph"
@@ -22,4 +24,14 @@
             android:name="com.njves.bigbuy.ui.analysis.AnalysisFragment"
             android:label="@string/title_analysis"
             tools:layout="@layout/fragment_analysis"/>
+
+    <fragment
+        android:id="@+id/navigation_create"
+        android:name="com.njves.bigbuy.ui.home.ExpenseCreateFragment"
+        android:label="Доход"
+        tools:layout="@layout/fragment_create">
+        <action android:id="@+id/action_navigation_create_to_navigation_home" app:destination="@id/navigation_home"
+                app:enterAnim="@android:anim/slide_out_right" app:popUpTo="@id/navigation_home"
+                app:popUpToInclusive="false"/>
+    </fragment>
 </navigation>

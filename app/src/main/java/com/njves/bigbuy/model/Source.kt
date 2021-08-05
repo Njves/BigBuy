@@ -9,4 +9,10 @@ class Source(val title: String) {
     constructor(id: UUID, title: String) : this(title) {
         this.id = id
     }
+
+    override fun toString(): String {
+        return "Source(title='$title', id=$id)"
+    }
+
+
 }
